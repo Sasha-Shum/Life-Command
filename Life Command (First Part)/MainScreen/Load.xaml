@@ -1,0 +1,100 @@
+﻿<Window
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:ee="http://schemas.microsoft.com/expression/2010/effects" xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing" mc:Ignorable="d"
+	x:Class="MainScreen.Load"
+	x:Name="Window"
+	Title="Load"
+	Width="700" Height="576" AllowsTransparency="True" WindowStyle="None" Background="{x:Null}" Foreground="{x:Null}">
+	<Grid Height="501" Margin="0,0,-96,-21" Width="600">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="32*"/>
+			<ColumnDefinition Width="34*" />
+			<ColumnDefinition Width="396*" />
+			<ColumnDefinition Width="292*"/>
+			<ColumnDefinition Width="Auto" MinWidth="50.386"/>
+		</Grid.ColumnDefinitions>
+		<Border x:Name="Body"  CornerRadius="0,0,30,30" Margin="0,62,-12,0" Grid.ColumnSpan="4" d:LayoutOverrides="GridBox">
+			<Border.Background>
+				<LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+					<GradientStop Color="#FFA3DBC5" Offset="0.105" />
+					<GradientStop Color="#FF7393A7" Offset="0.622" />
+				</LinearGradientBrush>
+			</Border.Background>
+        </Border>
+		<Border CornerRadius="30,30,0,0" Margin="0,24,47,436" Grid.ColumnSpan="4">
+			<Border.Background>
+				<LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+					<GradientStop Color="#FFA3DBC5" Offset="0.105" />
+					<GradientStop Color="#FF7393A7" Offset="0.721" />
+				</LinearGradientBrush>
+			</Border.Background>
+			<Border x:Name="TopBar" CornerRadius="30,30,30,30" BorderBrush="White" Margin="19,-35,0,8" HorizontalAlignment="Center" Width="335">
+				<Border.Background>
+					<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+						<GradientStop Color="Black" Offset="0" />
+						<GradientStop Color="#FF7CAEFF" Offset="1" />
+						<GradientStop Color="#FE697284" Offset="0" />
+					</LinearGradientBrush>
+				</Border.Background>
+				<Label x:Name="Load_Screen" Content="Load" TextOptions.TextFormattingMode="Display" FontFamily="{DynamicResource KristenITC}" ScrollViewer.VerticalScrollBarVisibility="Disabled" FontSize="32" Margin="8,8,8,-8" FontWeight="Bold" HorizontalAlignment="Center">
+					<Label.Effect>
+						<ee:SharpenEffect/>
+					</Label.Effect>
+				</Label>
+			</Border>
+
+		</Border>
+		<Button x:Name="exitButton" Content="X" HorizontalAlignment="Right" Height="23.5" Margin="0,24,-12,0" Style="{DynamicResource exitButtonStyle}" VerticalAlignment="Top" Width="25" ToolTip="Exit" Cursor="Hand" Grid.Column="3" >
+			<Button.Effect>
+				<DropShadowEffect Color="#FFB28282" ShadowDepth="4"/>
+			</Button.Effect>
+		</Button>
+		<Button x:Name="minimizeButton" HorizontalAlignment="Right" Height="23.5" Margin="0,24,18,0" Style="{DynamicResource minimizeButtonStyle}" VerticalAlignment="Top" Width="25" ToolTip="Minimize" Cursor="Hand" Grid.Column="3" Content="_" >
+			<Button.Effect>
+				<DropShadowEffect Color="#FF8CB47A" ShadowDepth="4"/>
+			</Button.Effect>
+		</Button>
+		<Ellipse x:Name="imageEllipse" Height="127" Margin="8,69,-97.986,0" Stroke="White" VerticalAlignment="Top" StrokeThickness="5" Grid.ColumnSpan="2">
+			<Ellipse.Fill>
+				<ImageBrush/>
+			</Ellipse.Fill>
+		</Ellipse>
+		<ListBox x:Name="householdsListBox" Margin="81,268,87,12" Background="#FFF7FD92" BorderThickness="10" FontSize="13.333" Grid.Column="2">
+			<ListBox.BorderBrush>
+				<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+					<GradientStop Color="#FFAF963E" Offset="0"/>
+					<GradientStop Color="White" Offset="1"/>
+				</LinearGradientBrush>
+			</ListBox.BorderBrush>
+		</ListBox>
+		<ListBox x:Name="peopleListBox" Margin="44.902,262,29.615,18" Grid.Column="3" BorderThickness="10" Background="#FFF7FD92">
+			<ListBox.BorderBrush>
+				<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+					<GradientStop Color="#FFAF963E" Offset="0"/>
+					<GradientStop Color="White" Offset="1"/>
+				</LinearGradientBrush>
+			</ListBox.BorderBrush>
+		</ListBox>
+		<Label Content="Time:" Margin="8,243.01,-153.084,218.98" FontSize="21.333" FontFamily="{DynamicResource KristenITC}" Grid.ColumnSpan="2" d:LayoutOverrides="Height"/>
+		<Label Content="Name:" VerticalAlignment="Top" Margin="8,200,-153.084,0" FontSize="21.333" FontFamily="{DynamicResource KristenITC}" Grid.ColumnSpan="2"/>
+		<TextBox Margin="128.986,112.01,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="2" HorizontalAlignment="Left" Grid.ColumnSpan="2" Width="496.614" FontSize="13.333" Height="36.093" BorderThickness="3" Name="searchTextBox">
+			<TextBox.BorderBrush>
+				<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+					<GradientStop Color="#FFFF4D4D" Offset="0"/>
+					<GradientStop Color="White" Offset="1"/>
+				</LinearGradientBrush>
+			</TextBox.BorderBrush>
+			<TextBox.Background>
+				<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+					<GradientStop Color="#FFD6B083" Offset="0"/>
+					<GradientStop Color="#FFFD7947" Offset="1"/>
+				</LinearGradientBrush>
+			</TextBox.Background>
+		</TextBox>
+		<Label Content="Search for last name:" VerticalAlignment="Top" Margin="128.986,69,86.098,0" FontSize="21.333" FontFamily="{DynamicResource KristenITC}" Grid.Column="2" Grid.ColumnSpan="2"/>
+		<Button x:Name="LoadButton" Content="Load" Grid.Column="2" HorizontalAlignment="Left" Height="85" Margin="-30.916,0,0,104" Style="{DynamicResource LoadButton}" VerticalAlignment="Bottom" Width="102.986" FontSize="18.667" FontFamily="Kristen ITC"/>
+		<Button x:Name="backMenuButton" Content="Back" Grid.Column="2" Margin="-30.916,0,0,15" Style="{DynamicResource LoadButton}" VerticalAlignment="Bottom" Height="85" HorizontalAlignment="Left" Width="102.986" d:LayoutOverrides="VerticalAlignment" FontSize="18.667" FontFamily="Kristen ITC"/>
+        <Button Content="Search" Height="39" Name="searchButton" Width="99" Style="{StaticResource viewManagerButtons}" Click="searchButton_Click" Grid.Column="2" Margin="81,214,109,248" />
+    </Grid>
+</Window>

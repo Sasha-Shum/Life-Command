@@ -1,0 +1,986 @@
+﻿<Application xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing" x:Class="MainScreen.App"
+             StartupUri="SplashScreen.xaml" mc:Ignorable="d">
+    <Application.Resources>
+         
+    	<Style x:Key="exitButtonStyle" TargetType="{x:Type Button}">
+    		<Setter Property="Template">
+    			<Setter.Value>
+    				<ControlTemplate TargetType="{x:Type Button}">
+    					<Grid>
+    						<Ellipse x:Name="exitButton" Cursor="Hand" RenderTransformOrigin="8.938,-4.361" Stroke="{x:Null}" StrokeThickness="1" ToolTip="Exit">
+    							<Ellipse.Fill>
+    								<LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+    									<GradientStop Color="#FFFF7C7C" Offset="0.931"/>
+    									<GradientStop Color="#FFC81212" Offset="0.138"/>
+    									<GradientStop Color="#FFAB0F0F" Offset="0.539"/>
+    								</LinearGradientBrush>
+    							</Ellipse.Fill>
+    						</Ellipse>
+    						<ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+    					</Grid>
+    					<ControlTemplate.Triggers>
+    						<Trigger Property="IsFocused" Value="True"/>
+    						<Trigger Property="IsDefaulted" Value="True"/>
+    						<Trigger Property="IsMouseOver" Value="True"/>
+    						<Trigger Property="IsPressed" Value="True"/>
+    						<Trigger Property="IsEnabled" Value="False"/>
+    					</ControlTemplate.Triggers>
+    				</ControlTemplate>
+    			</Setter.Value>
+    		</Setter>
+    	</Style>
+    	<Style x:Key="minimizeButtonStyle" TargetType="{x:Type Button}">
+    		<Setter Property="Template">
+    			<Setter.Value>
+    				<ControlTemplate TargetType="{x:Type Button}">
+    					<Grid>
+    						<Ellipse x:Name="minimizeButton" Cursor="Hand" RenderTransformOrigin="8.938,-4.361" Stroke="{x:Null}" StrokeThickness="1" ToolTip="Exit">
+    							<Ellipse.Fill>
+    								<LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+    									<GradientStop Color="#FFAEE47A" Offset="1"/>
+    									<GradientStop Color="#E18DEB20" Offset="0.034"/>
+    									<GradientStop Color="#FF5AA90E" Offset="0.651"/>
+    								</LinearGradientBrush>
+    							</Ellipse.Fill>
+    						</Ellipse>
+    						<ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+    					</Grid>
+    					<ControlTemplate.Triggers>
+    						<Trigger Property="IsFocused" Value="True"/>
+    						<Trigger Property="IsDefaulted" Value="True"/>
+    						<Trigger Property="IsMouseOver" Value="True"/>
+    						<Trigger Property="IsPressed" Value="True"/>
+    						<Trigger Property="IsEnabled" Value="False"/>
+    					</ControlTemplate.Triggers>
+    				</ControlTemplate>
+    			</Setter.Value>
+    		</Setter>
+    	</Style>
+    	<Style x:Key="FormButtons" TargetType="{x:Type Button}">
+    		<Setter Property="Template">
+    			<Setter.Value>
+    				<ControlTemplate TargetType="{x:Type Button}">
+    					<Grid>
+    						<VisualStateManager.VisualStateGroups>
+    							<VisualStateGroup x:Name="CommonStates">
+    								<VisualState x:Name="Normal"/>
+    								<VisualState x:Name="MouseOver">
+    									<Storyboard>
+    										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[0].(GradientStop.Color)" Storyboard.TargetName="path">
+    											<EasingColorKeyFrame KeyTime="0" Value="#FF359D08"/>
+    										</ColorAnimationUsingKeyFrames>
+    										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="path">
+    											<EasingColorKeyFrame KeyTime="0" Value="#FFBAC880"/>
+    										</ColorAnimationUsingKeyFrames>
+    										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(GradientBrush.GradientStops)[0].(GradientStop.Color)" Storyboard.TargetName="path">
+    											<EasingColorKeyFrame KeyTime="0" Value="Black"/>
+    										</ColorAnimationUsingKeyFrames>
+    										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="path">
+    											<EasingColorKeyFrame KeyTime="0" Value="#FF935F5F"/>
+    										</ColorAnimationUsingKeyFrames>
+    										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.StrokeThickness)" Storyboard.TargetName="path">
+    											<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+    										</DoubleAnimationUsingKeyFrames>
+    									</Storyboard>
+    								</VisualState>
+    								<VisualState x:Name="Pressed">
+    									<Storyboard>
+    										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[0].(GradientStop.Color)" Storyboard.TargetName="path">
+    											<EasingColorKeyFrame KeyTime="0" Value="#FFF4FFC5"/>
+    										</ColorAnimationUsingKeyFrames>
+    										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="path">
+    											<EasingColorKeyFrame KeyTime="0" Value="#FFD5FF22"/>
+    										</ColorAnimationUsingKeyFrames>
+    										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(GradientBrush.GradientStops)[0].(GradientStop.Color)" Storyboard.TargetName="path">
+    											<EasingColorKeyFrame KeyTime="0" Value="#FFDEDB91"/>
+    										</ColorAnimationUsingKeyFrames>
+    										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="path">
+    											<EasingColorKeyFrame KeyTime="0" Value="Red"/>
+    										</ColorAnimationUsingKeyFrames>
+    										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.StrokeThickness)" Storyboard.TargetName="path">
+    											<EasingDoubleKeyFrame KeyTime="0" Value="10"/>
+    										</DoubleAnimationUsingKeyFrames>
+    										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="path">
+    											<EasingDoubleKeyFrame KeyTime="0" Value="1.093"/>
+    										</DoubleAnimationUsingKeyFrames>
+    										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="path">
+    											<EasingDoubleKeyFrame KeyTime="0" Value="-3"/>
+    										</DoubleAnimationUsingKeyFrames>
+    										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="path">
+    											<EasingDoubleKeyFrame KeyTime="0" Value="1.153"/>
+    										</DoubleAnimationUsingKeyFrames>
+    										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="path">
+    											<EasingDoubleKeyFrame KeyTime="0" Value="-2.5"/>
+    										</DoubleAnimationUsingKeyFrames>
+    									</Storyboard>
+    								</VisualState>
+    								<VisualState x:Name="Disabled"/>
+    							</VisualStateGroup>
+    						</VisualStateManager.VisualStateGroups>
+    						<Path x:Name="path" Data="M450,206C447.59654,196.38617 438.66757,187.24932 451,178 460.33488,170.99884 471.9818,165.81653 485,167 494.76377,167.88762 493.38516,177.67187 497,188 500.04963,196.71324 506.47555,201.89511 517,204 541.65363,208.93073 549.88752,196.21041 571,188 580.561,184.28183 585.29283,182 597,182 600.94864,182 618.49649,196.50117 599,203 597.94291,206.17126 596.67609,208.61953 596,212 617.76066,212 624.52966,207.38957 643,197 646.85581,194.83111 649.88114,193.37295 654,192 657.59932,190.80023 663.16678,186.83457 664,196 664.92144,206.13586 655.92422,209.22734 653,218 639.44768,220.71046 622.70711,209.93762 642,238 649.39211,248.75216 648.05968,264.11937 654,276 645.02463,284.97537 623,283.37138 623,299 623,308.82907 626.5622,310.24976 635,317 641.58442,322.26754 645.26594,322.44043 631,331 624.2989,335.02066 598.72642,350.28774 591,349 575.15027,346.35838 569.62478,341.75044 582,317 568.25707,307.18362 563.33983,322.86407 548,329 543.82919,341.51244 523.68952,353.22984 502,346 497.44455,344.48152 492.11792,345.29433 488,342 484.17723,338.94178 482.61386,335.77229 486,329 489.87127,321.25746 503.80921,320.8671 508,315 514.09519,306.46673 505.14052,303.30029 492,296 483.60873,291.33819 475.16675,286.93056 464,286 460.01476,285.6679 453.21179,274.13986 469,268 480.30288,263.60443 487.51661,265 500,265 491.58039,256.58039 481.2795,252.5118 470,248 463.8692,245.54768 458.33119,244.33119 454,240 449.80524,235.80524 448.7948,233.38439 447,228 444.34948,220.04844 439.01739,208 459,208 461.53821,208 463.48016,209.58247 465,206 466.15741,203.27183 465.78948,202.41755 463,200 459.23662,196.7384 454.27596,194.93209 450,192" Stretch="Fill" RenderTransformOrigin="0.5,0.5">
+    							<Path.RenderTransform>
+    								<TransformGroup>
+    									<ScaleTransform/>
+    									<SkewTransform/>
+    									<RotateTransform/>
+    									<TranslateTransform/>
+    								</TransformGroup>
+    							</Path.RenderTransform>
+    							<Path.Fill>
+    								<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+    									<GradientStop Color="#FF74F73A" Offset="0"/>
+    									<GradientStop Color="#FFDEE910" Offset="1"/>
+    								</LinearGradientBrush>
+    							</Path.Fill>
+    							<Path.Stroke>
+    								<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+    									<GradientStop Color="#FFFB8F8F" Offset="0"/>
+    									<GradientStop Color="#FFC82C2C" Offset="1"/>
+    								</LinearGradientBrush>
+    							</Path.Stroke>
+    						</Path>
+    						<ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+    					</Grid>
+    					<ControlTemplate.Triggers>
+    						<Trigger Property="IsFocused" Value="True"/>
+    						<Trigger Property="IsDefaulted" Value="True"/>
+    						<Trigger Property="IsMouseOver" Value="True"/>
+    						<Trigger Property="IsPressed" Value="True"/>
+    						<Trigger Property="IsEnabled" Value="False"/>
+    					</ControlTemplate.Triggers>
+    				</ControlTemplate>
+    			</Setter.Value>
+    		</Setter>
+    	</Style>
+    	<Style x:Key="RandomButton" TargetType="{x:Type Button}">
+    		<Setter Property="Template">
+    			<Setter.Value>
+    				<ControlTemplate TargetType="{x:Type Button}">
+    					<Grid>
+    						<VisualStateManager.VisualStateGroups>
+    							<VisualStateGroup x:Name="CommonStates">
+    								<VisualState x:Name="Normal"/>
+    								<VisualState x:Name="MouseOver">
+    									<Storyboard>
+    										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[0].(GradientStop.Color)" Storyboard.TargetName="path">
+    											<EasingColorKeyFrame KeyTime="0" Value="#FF359D08"/>
+    										</ColorAnimationUsingKeyFrames>
+    										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="path">
+    											<EasingColorKeyFrame KeyTime="0" Value="#FFBAC880"/>
+    										</ColorAnimationUsingKeyFrames>
+    										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(GradientBrush.GradientStops)[0].(GradientStop.Color)" Storyboard.TargetName="path">
+    											<EasingColorKeyFrame KeyTime="0" Value="Black"/>
+    										</ColorAnimationUsingKeyFrames>
+    										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="path">
+    											<EasingColorKeyFrame KeyTime="0" Value="#FF935F5F"/>
+    										</ColorAnimationUsingKeyFrames>
+    										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.StrokeThickness)" Storyboard.TargetName="path">
+    											<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+    										</DoubleAnimationUsingKeyFrames>
+    									</Storyboard>
+    								</VisualState>
+    								<VisualState x:Name="Pressed">
+    									<Storyboard>
+    										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[0].(GradientStop.Color)" Storyboard.TargetName="path">
+    											<EasingColorKeyFrame KeyTime="0" Value="#FFF4FFC5"/>
+    										</ColorAnimationUsingKeyFrames>
+    										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="path">
+    											<EasingColorKeyFrame KeyTime="0" Value="#FFD5FF22"/>
+    										</ColorAnimationUsingKeyFrames>
+    										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(GradientBrush.GradientStops)[0].(GradientStop.Color)" Storyboard.TargetName="path">
+    											<EasingColorKeyFrame KeyTime="0" Value="#FFDEDB91"/>
+    										</ColorAnimationUsingKeyFrames>
+    										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="path">
+    											<EasingColorKeyFrame KeyTime="0" Value="Red"/>
+    										</ColorAnimationUsingKeyFrames>
+    										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.StrokeThickness)" Storyboard.TargetName="path">
+    											<EasingDoubleKeyFrame KeyTime="0" Value="10"/>
+    										</DoubleAnimationUsingKeyFrames>
+    										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="path">
+    											<EasingDoubleKeyFrame KeyTime="0" Value="1.371"/>
+    										</DoubleAnimationUsingKeyFrames>
+    										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="path">
+    											<EasingDoubleKeyFrame KeyTime="0" Value="-9.957"/>
+    										</DoubleAnimationUsingKeyFrames>
+    										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="path">
+    											<EasingDoubleKeyFrame KeyTime="0" Value="1.553"/>
+    										</DoubleAnimationUsingKeyFrames>
+    										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="path">
+    											<EasingDoubleKeyFrame KeyTime="0" Value="-5.5"/>
+    										</DoubleAnimationUsingKeyFrames>
+    										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="contentPresenter">
+    											<EasingDoubleKeyFrame KeyTime="0" Value="-11.676"/>
+    										</DoubleAnimationUsingKeyFrames>
+    										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="contentPresenter">
+    											<EasingDoubleKeyFrame KeyTime="0" Value="-0.937"/>
+    										</DoubleAnimationUsingKeyFrames>
+    										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="contentPresenter">
+    											<EasingDoubleKeyFrame KeyTime="0" Value="19.125"/>
+    										</DoubleAnimationUsingKeyFrames>
+    										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="contentPresenter">
+    											<EasingDoubleKeyFrame KeyTime="0" Value="1.32"/>
+    										</DoubleAnimationUsingKeyFrames>
+    									</Storyboard>
+    								</VisualState>
+    								<VisualState x:Name="Disabled"/>
+    							</VisualStateGroup>
+    						</VisualStateManager.VisualStateGroups>
+    						<Path x:Name="path" Data="M450,206C447.59654,196.38617 438.66757,187.24932 451,178 460.33488,170.99884 471.9818,165.81653 485,167 494.76377,167.88762 493.38516,177.67187 497,188 500.04963,196.71324 506.47555,201.89511 517,204 541.65363,208.93073 549.88752,196.21041 571,188 580.561,184.28183 585.29283,182 597,182 600.94864,182 618.49649,196.50117 599,203 597.94291,206.17126 596.67609,208.61953 596,212 617.76066,212 624.52966,207.38957 643,197 646.85581,194.83111 649.88114,193.37295 654,192 657.59932,190.80023 663.16678,186.83457 664,196 664.92144,206.13586 655.92422,209.22734 653,218 639.44768,220.71046 622.70711,209.93762 642,238 649.39211,248.75216 648.05968,264.11937 654,276 645.02463,284.97537 623,283.37138 623,299 623,308.82907 626.5622,310.24976 635,317 641.58442,322.26754 645.26594,322.44043 631,331 624.2989,335.02066 598.72642,350.28774 591,349 575.15027,346.35838 569.62478,341.75044 582,317 568.25707,307.18362 563.33983,322.86407 548,329 543.82919,341.51244 523.68952,353.22984 502,346 497.44455,344.48152 492.11792,345.29433 488,342 484.17723,338.94178 482.61386,335.77229 486,329 489.87127,321.25746 503.80921,320.8671 508,315 514.09519,306.46673 505.14052,303.30029 492,296 483.60873,291.33819 475.16675,286.93056 464,286 460.01476,285.6679 453.21179,274.13986 469,268 480.30288,263.60443 487.51661,265 500,265 491.58039,256.58039 481.2795,252.5118 470,248 463.8692,245.54768 458.33119,244.33119 454,240 449.80524,235.80524 448.7948,233.38439 447,228 444.34948,220.04844 439.01739,208 459,208 461.53821,208 463.48016,209.58247 465,206 466.15741,203.27183 465.78948,202.41755 463,200 459.23662,196.7384 454.27596,194.93209 450,192" Stretch="Fill" RenderTransformOrigin="0.5,0.5">
+    							<Path.RenderTransform>
+    								<TransformGroup>
+    									<ScaleTransform/>
+    									<SkewTransform/>
+    									<RotateTransform/>
+    									<TranslateTransform/>
+    								</TransformGroup>
+    							</Path.RenderTransform>
+    							<Path.Fill>
+    								<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+    									<GradientStop Color="#FF74F73A" Offset="0"/>
+    									<GradientStop Color="#FFDEE910" Offset="1"/>
+    								</LinearGradientBrush>
+    							</Path.Fill>
+    							<Path.Stroke>
+    								<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+    									<GradientStop Color="#FFFB8F8F" Offset="0"/>
+    									<GradientStop Color="#FFC82C2C" Offset="1"/>
+    								</LinearGradientBrush>
+    							</Path.Stroke>
+    						</Path>
+    						<ContentPresenter x:Name="contentPresenter" HorizontalAlignment="Stretch" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Stretch" Margin="57.692,30.181,38.561,22.181" d:LayoutOverrides="Width, Height" RenderTransformOrigin="0.5,0.5">
+    							<ContentPresenter.RenderTransform>
+    								<TransformGroup>
+    									<ScaleTransform/>
+    									<SkewTransform/>
+    									<RotateTransform/>
+    									<TranslateTransform/>
+    								</TransformGroup>
+    							</ContentPresenter.RenderTransform>
+    						</ContentPresenter>
+    					</Grid>
+    					<ControlTemplate.Triggers>
+    						<Trigger Property="IsFocused" Value="True"/>
+    						<Trigger Property="IsDefaulted" Value="True"/>
+    						<Trigger Property="IsMouseOver" Value="True"/>
+    						<Trigger Property="IsPressed" Value="True"/>
+    						<Trigger Property="IsEnabled" Value="False"/>
+    					</ControlTemplate.Triggers>
+    				</ControlTemplate>
+    			</Setter.Value>
+    		</Setter>
+    	</Style>
+    	<Style x:Key="createAndStart" TargetType="{x:Type Button}">
+    		<Setter Property="Template">
+    			<Setter.Value>
+    				<ControlTemplate TargetType="{x:Type Button}">
+    					<Grid>
+    						<VisualStateManager.VisualStateGroups>
+    							<VisualStateGroup x:Name="CommonStates">
+    								<VisualState x:Name="Normal"/>
+    								<VisualState x:Name="MouseOver">
+    									<Storyboard>
+    										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[0].(GradientStop.Color)" Storyboard.TargetName="path">
+    											<EasingColorKeyFrame KeyTime="0" Value="#FF359D08"/>
+    										</ColorAnimationUsingKeyFrames>
+    										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="path">
+    											<EasingColorKeyFrame KeyTime="0" Value="#FFBAC880"/>
+    										</ColorAnimationUsingKeyFrames>
+    										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(GradientBrush.GradientStops)[0].(GradientStop.Color)" Storyboard.TargetName="path">
+    											<EasingColorKeyFrame KeyTime="0" Value="Black"/>
+    										</ColorAnimationUsingKeyFrames>
+    										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="path">
+    											<EasingColorKeyFrame KeyTime="0" Value="#FF935F5F"/>
+    										</ColorAnimationUsingKeyFrames>
+    										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.StrokeThickness)" Storyboard.TargetName="path">
+    											<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+    										</DoubleAnimationUsingKeyFrames>
+    									</Storyboard>
+    								</VisualState>
+    								<VisualState x:Name="Pressed">
+    									<Storyboard>
+    										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[0].(GradientStop.Color)" Storyboard.TargetName="path">
+    											<EasingColorKeyFrame KeyTime="0" Value="#FFF4FFC5"/>
+    										</ColorAnimationUsingKeyFrames>
+    										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="path">
+    											<EasingColorKeyFrame KeyTime="0" Value="#FFD5FF22"/>
+    										</ColorAnimationUsingKeyFrames>
+    										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(GradientBrush.GradientStops)[0].(GradientStop.Color)" Storyboard.TargetName="path">
+    											<EasingColorKeyFrame KeyTime="0" Value="#FFDEDB91"/>
+    										</ColorAnimationUsingKeyFrames>
+    										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="path">
+    											<EasingColorKeyFrame KeyTime="0" Value="Red"/>
+    										</ColorAnimationUsingKeyFrames>
+    										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.StrokeThickness)" Storyboard.TargetName="path">
+    											<EasingDoubleKeyFrame KeyTime="0" Value="10"/>
+    										</DoubleAnimationUsingKeyFrames>
+    										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="path">
+    											<EasingDoubleKeyFrame KeyTime="0" Value="1.371"/>
+    										</DoubleAnimationUsingKeyFrames>
+    										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="path">
+    											<EasingDoubleKeyFrame KeyTime="0" Value="-9.957"/>
+    										</DoubleAnimationUsingKeyFrames>
+    										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="path">
+    											<EasingDoubleKeyFrame KeyTime="0" Value="1.553"/>
+    										</DoubleAnimationUsingKeyFrames>
+    										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="path">
+    											<EasingDoubleKeyFrame KeyTime="0" Value="-5.5"/>
+    										</DoubleAnimationUsingKeyFrames>
+    										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="contentPresenter">
+    											<EasingDoubleKeyFrame KeyTime="0" Value="-36.755"/>
+    										</DoubleAnimationUsingKeyFrames>
+    										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="contentPresenter">
+    											<EasingDoubleKeyFrame KeyTime="0" Value="-1.167"/>
+    										</DoubleAnimationUsingKeyFrames>
+    										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="contentPresenter">
+    											<EasingDoubleKeyFrame KeyTime="0" Value="19.125"/>
+    										</DoubleAnimationUsingKeyFrames>
+    										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="contentPresenter">
+    											<EasingDoubleKeyFrame KeyTime="0" Value="1.32"/>
+    										</DoubleAnimationUsingKeyFrames>
+    									</Storyboard>
+    								</VisualState>
+    								<VisualState x:Name="Disabled"/>
+    							</VisualStateGroup>
+    						</VisualStateManager.VisualStateGroups>
+    						<Path x:Name="path" Data="M450,206C447.59654,196.38617 438.66757,187.24932 451,178 460.33488,170.99884 471.9818,165.81653 485,167 494.76377,167.88762 493.38516,177.67187 497,188 500.04963,196.71324 506.47555,201.89511 517,204 541.65363,208.93073 549.88752,196.21041 571,188 580.561,184.28183 585.29283,182 597,182 600.94864,182 618.49649,196.50117 599,203 597.94291,206.17126 596.67609,208.61953 596,212 617.76066,212 624.52966,207.38957 643,197 646.85581,194.83111 649.88114,193.37295 654,192 657.59932,190.80023 663.16678,186.83457 664,196 664.92144,206.13586 655.92422,209.22734 653,218 639.44768,220.71046 622.70711,209.93762 642,238 649.39211,248.75216 648.05968,264.11937 654,276 645.02463,284.97537 623,283.37138 623,299 623,308.82907 626.5622,310.24976 635,317 641.58442,322.26754 645.26594,322.44043 631,331 624.2989,335.02066 598.72642,350.28774 591,349 575.15027,346.35838 569.62478,341.75044 582,317 568.25707,307.18362 563.33983,322.86407 548,329 543.82919,341.51244 523.68952,353.22984 502,346 497.44455,344.48152 492.11792,345.29433 488,342 484.17723,338.94178 482.61386,335.77229 486,329 489.87127,321.25746 503.80921,320.8671 508,315 514.09519,306.46673 505.14052,303.30029 492,296 483.60873,291.33819 475.16675,286.93056 464,286 460.01476,285.6679 453.21179,274.13986 469,268 480.30288,263.60443 487.51661,265 500,265 491.58039,256.58039 481.2795,252.5118 470,248 463.8692,245.54768 458.33119,244.33119 454,240 449.80524,235.80524 448.7948,233.38439 447,228 444.34948,220.04844 439.01739,208 459,208 461.53821,208 463.48016,209.58247 465,206 466.15741,203.27183 465.78948,202.41755 463,200 459.23662,196.7384 454.27596,194.93209 450,192" Stretch="Fill" RenderTransformOrigin="0.5,0.5">
+    							<Path.RenderTransform>
+    								<TransformGroup>
+    									<ScaleTransform/>
+    									<SkewTransform/>
+    									<RotateTransform/>
+    									<TranslateTransform/>
+    								</TransformGroup>
+    							</Path.RenderTransform>
+    							<Path.Fill>
+    								<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+    									<GradientStop Color="#FF74F73A" Offset="0"/>
+    									<GradientStop Color="#FFDEE910" Offset="1"/>
+    								</LinearGradientBrush>
+    							</Path.Fill>
+    							<Path.Stroke>
+    								<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+    									<GradientStop Color="#FFFB8F8F" Offset="0"/>
+    									<GradientStop Color="#FFC82C2C" Offset="1"/>
+    								</LinearGradientBrush>
+    							</Path.Stroke>
+    						</Path>
+    						<ContentPresenter x:Name="contentPresenter" HorizontalAlignment="Stretch" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Stretch" Margin="58.971,38.379,31.39,13.976" d:LayoutOverrides="Height" RenderTransformOrigin="0.5,0.5">
+    							<ContentPresenter.RenderTransform>
+    								<TransformGroup>
+    									<ScaleTransform/>
+    									<SkewTransform/>
+    									<RotateTransform Angle="5.929"/>
+    									<TranslateTransform/>
+    								</TransformGroup>
+    							</ContentPresenter.RenderTransform>
+    						</ContentPresenter>
+    					</Grid>
+    					<ControlTemplate.Triggers>
+    						<Trigger Property="IsFocused" Value="True"/>
+    						<Trigger Property="IsDefaulted" Value="True"/>
+    						<Trigger Property="IsMouseOver" Value="True"/>
+    						<Trigger Property="IsPressed" Value="True"/>
+    						<Trigger Property="IsEnabled" Value="False"/>
+    					</ControlTemplate.Triggers>
+    				</ControlTemplate>
+    			</Setter.Value>
+    		</Setter>
+    	</Style>
+    	<Style x:Key="MoveButton" TargetType="{x:Type Button}">
+    		<Setter Property="Template">
+    			<Setter.Value>
+    				<ControlTemplate TargetType="{x:Type Button}">
+    					<Grid>
+    						<VisualStateManager.VisualStateGroups>
+    							<VisualStateGroup x:Name="CommonStates">
+    								<VisualState x:Name="Normal"/>
+    								<VisualState x:Name="MouseOver">
+    									<Storyboard>
+    										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="ellipse">
+    											<EasingColorKeyFrame KeyTime="0" Value="#FF15E218"/>
+    										</ColorAnimationUsingKeyFrames>
+    										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="ellipse">
+    											<EasingColorKeyFrame KeyTime="0" Value="#FFA9E9FF"/>
+    										</ColorAnimationUsingKeyFrames>
+    										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(GradientBrush.GradientStops)[0].(GradientStop.Color)" Storyboard.TargetName="ellipse">
+    											<EasingColorKeyFrame KeyTime="0" Value="#FF2470D6"/>
+    										</ColorAnimationUsingKeyFrames>
+    										<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Cursor)" Storyboard.TargetName="ellipse">
+    											<DiscreteObjectKeyFrame KeyTime="0">
+    												<DiscreteObjectKeyFrame.Value>
+    													<Cursor>Hand</Cursor>
+    												</DiscreteObjectKeyFrame.Value>
+    											</DiscreteObjectKeyFrame>
+    										</ObjectAnimationUsingKeyFrames>
+    									</Storyboard>
+    								</VisualState>
+    								<VisualState x:Name="Pressed"/>
+    								<VisualState x:Name="Disabled"/>
+    							</VisualStateGroup>
+    						</VisualStateManager.VisualStateGroups>
+    						<Ellipse x:Name="ellipse" Fill="Red" StrokeThickness="10">
+    							<Ellipse.Stroke>
+    								<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+    									<GradientStop Color="#FFEDF791" Offset="0"/>
+    									<GradientStop Color="#FFF31919" Offset="1"/>
+    								</LinearGradientBrush>
+    							</Ellipse.Stroke>
+    						</Ellipse>
+    						<ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+    					</Grid>
+    					<ControlTemplate.Triggers>
+    						<Trigger Property="IsFocused" Value="True"/>
+    						<Trigger Property="IsDefaulted" Value="True"/>
+    						<Trigger Property="IsMouseOver" Value="True"/>
+    						<Trigger Property="IsPressed" Value="True"/>
+    						<Trigger Property="IsEnabled" Value="False"/>
+    					</ControlTemplate.Triggers>
+    				</ControlTemplate>
+    			</Setter.Value>
+    		</Setter>
+    	</Style>
+    	<Style x:Key="viewManagerButtons" TargetType="{x:Type Button}">
+    		<Setter Property="Template">
+    			<Setter.Value>
+    				<ControlTemplate TargetType="{x:Type Button}">
+    					<Grid>
+    						<VisualStateManager.VisualStateGroups>
+    							<VisualStateGroup x:Name="CommonStates">
+    								<VisualState x:Name="Normal"/>
+    								<VisualState x:Name="MouseOver">
+    									<Storyboard>
+    										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="path">
+    											<EasingColorKeyFrame KeyTime="0" Value="#FF4668D0"/>
+    										</ColorAnimationUsingKeyFrames>
+    									</Storyboard>
+    								</VisualState>
+    								<VisualState x:Name="Pressed"/>
+    								<VisualState x:Name="Disabled"/>
+    							</VisualStateGroup>
+    						</VisualStateManager.VisualStateGroups>
+    						<Path x:Name="path" Cursor="Hand" Data="M393.90232,104.618 C394.66665,103.6905 392.34868,102.73389 391.90232,101.618 391.65473,100.99902 392.15745,100.23392 391.90232,99.618 391.72192,99.182479 391.11314,99.039637 390.90232,98.618 403.51931,89.605869 419.97771,103.08031 434.90232,95.618 445.97946,90.07943 454.42126,92.326276 456.90232,119.618 457.84711,130.01063 466.22178,159.27475 435.90232,137.618 429.38993,132.96629 425.28025,134.42904 416.90232,138.618 411.56475,141.28678 404.22179,152.25692&#xd;&#xa;398.90232,141.618 395.35801,139.84584 395.27284,136.60133 391.90232,132.618 388.62554,128.74543 385.31367,126.91232 393.90232,122.618 388.12879,114.91995 390.73868,111.19065 389.90232,102.618" Stretch="Fill" StrokeThickness="3">
+    							<Path.Fill>
+    								<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+    									<GradientStop Color="#FFFF8E1C" Offset="0"/>
+    									<GradientStop Color="#FFB2FF5A" Offset="1"/>
+    								</LinearGradientBrush>
+    							</Path.Fill>
+    							<Path.Stroke>
+    								<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+    									<GradientStop Color="#FFC1F751" Offset="0"/>
+    									<GradientStop Color="#FFDFE72F" Offset="1"/>
+    									<GradientStop Color="#FFEAFCA0" Offset="0.914"/>
+    								</LinearGradientBrush>
+    							</Path.Stroke>
+    						</Path>
+    						<ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+    					</Grid>
+    					<ControlTemplate.Triggers>
+    						<Trigger Property="IsFocused" Value="True"/>
+    						<Trigger Property="IsDefaulted" Value="True"/>
+    						<Trigger Property="IsMouseOver" Value="True"/>
+    						<Trigger Property="IsPressed" Value="True"/>
+    						<Trigger Property="IsEnabled" Value="False"/>
+    					</ControlTemplate.Triggers>
+    				</ControlTemplate>
+    			</Setter.Value>
+    		</Setter>
+    	</Style>
+    	<Style x:Key="askForRaiseButton" TargetType="{x:Type Button}">
+    		<Setter Property="Template">
+    			<Setter.Value>
+    				<ControlTemplate TargetType="{x:Type Button}">
+    					<Grid>
+    						<VisualStateManager.VisualStateGroups>
+    							<VisualStateGroup x:Name="CommonStates">
+    								<VisualState x:Name="Normal"/>
+    								<VisualState x:Name="MouseOver">
+    									<Storyboard>
+    										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="path">
+    											<EasingColorKeyFrame KeyTime="0" Value="#FFB0BCA1"/>
+    										</ColorAnimationUsingKeyFrames>
+    										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[0].(GradientStop.Color)" Storyboard.TargetName="path">
+    											<EasingColorKeyFrame KeyTime="0" Value="#FF2DFF1C"/>
+    										</ColorAnimationUsingKeyFrames>
+    									</Storyboard>
+    								</VisualState>
+    								<VisualState x:Name="Pressed"/>
+    								<VisualState x:Name="Disabled"/>
+    							</VisualStateGroup>
+    						</VisualStateManager.VisualStateGroups>
+    						<Path x:Name="path" Data="M133.5063,123.618 C133.5063,122.618 133.5063,121.618 133.5063,120.618 138.4266,118.15785 133.79336,123.04387 136.5063,117.618 143.65545,115.23495 144.38307,110.78862 153.5063,111.618 159.02855,112.12002 160.98404,120.11598 166.5063,120.618 182.39824,122.06272 187.95649,114.1346 201.5063,109.618 206.21784,123.75263 226.26756,125.86575 247.5063,121.618 253.31893,120.45547 267.30459,113.89698 273.5063,117.618 282.69548,123.13151 266.42396,127.78266&#xd;&#xa;262.5063,135.618 275.22753,141.97862 273.33197,142.07918 253.5063,156.618 246.49642,161.75858 251.36624,168.96002 242.5063,171.618 239.77066,172.43869 238.1786,174.99511 234.5063,173.618 231.20448,172.37982 231.1313,169.368 233.5063,164.618 233.17296,164.28467 232.83963,163.95133 232.5063,163.618 212.34256,178.02067 205.1279,180.34232 176.5063,174.618 176.0896,172.5345 175.923,171.7015 175.5063,169.618 155.06067,165.52887&#xd;&#xa;161.08856,162.73083 142.5063,171.618 141.18816,172.24841 130.85334,170.47667 130.5063,165.618 130.16839,160.88731 140.57716,162.40541 142.5063,156.618 133.84862,155.17505 129.03708,150.12826 121.5063,147.618 120.5471,144.7404 120.9058,145.0175 118.5063,142.618 123.23379,140.25425 128.15785,136.68769 133.5063,135.618 133.37555,134.96428 133.5063,134.28467 133.5063,133.618 133.5063,132.95133 133.37555,132.27172 133.5063,131.618&#xd;&#xa;126.75441,128.24206 130.83825,130.95512 133.5063,123.618 z" Stretch="Fill" StrokeThickness="3">
+    							<Path.Fill>
+    								<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+    									<GradientStop Color="#FFFF8E1C" Offset="0"/>
+    									<GradientStop Color="#FFB2FF5A" Offset="1"/>
+    								</LinearGradientBrush>
+    							</Path.Fill>
+    							<Path.Stroke>
+    								<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+    									<GradientStop Color="#FFC1F751" Offset="0"/>
+    									<GradientStop Color="#FFDFE72F" Offset="1"/>
+    									<GradientStop Color="#FFEAFCA0" Offset="0.914"/>
+    								</LinearGradientBrush>
+    							</Path.Stroke>
+    						</Path>
+    						<ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+    					</Grid>
+    					<ControlTemplate.Triggers>
+    						<Trigger Property="IsFocused" Value="True"/>
+    						<Trigger Property="IsDefaulted" Value="True"/>
+    						<Trigger Property="IsMouseOver" Value="True"/>
+    						<Trigger Property="IsPressed" Value="True"/>
+    						<Trigger Property="IsEnabled" Value="False"/>
+    					</ControlTemplate.Triggers>
+    				</ControlTemplate>
+    			</Setter.Value>
+    		</Setter>
+    	</Style>
+    	<Style x:Key="FitnessButton" TargetType="{x:Type Button}">
+    		<Setter Property="Template">
+    			<Setter.Value>
+    				<ControlTemplate TargetType="{x:Type Button}">
+    					<Grid>
+    						<VisualStateManager.VisualStateGroups>
+    							<VisualStateGroup x:Name="CommonStates">
+    								<VisualState x:Name="Normal"/>
+    								<VisualState x:Name="MouseOver">
+    									<Storyboard>
+    										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="rectangle">
+    											<EasingDoubleKeyFrame KeyTime="0" Value="1.364"/>
+    										</DoubleAnimationUsingKeyFrames>
+    										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="rectangle">
+    											<EasingDoubleKeyFrame KeyTime="0" Value="1.362"/>
+    										</DoubleAnimationUsingKeyFrames>
+    										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="rectangle">
+    											<EasingDoubleKeyFrame KeyTime="0" Value="-1.5"/>
+    										</DoubleAnimationUsingKeyFrames>
+    										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="rectangle">
+    											<EasingDoubleKeyFrame KeyTime="0" Value="-10.5"/>
+    										</DoubleAnimationUsingKeyFrames>
+    									</Storyboard>
+    								</VisualState>
+    								<VisualState x:Name="Pressed"/>
+    								<VisualState x:Name="Disabled"/>
+    							</VisualStateGroup>
+    						</VisualStateManager.VisualStateGroups>
+    						<Rectangle x:Name="rectangle" StrokeThickness="0" ToolTip="Activity and Health Form" RenderTransformOrigin="0.5,0.5">
+    							<Rectangle.RenderTransform>
+    								<TransformGroup>
+    									<ScaleTransform/>
+    									<SkewTransform/>
+    									<RotateTransform/>
+    									<TranslateTransform/>
+    								</TransformGroup>
+    							</Rectangle.RenderTransform>
+    							<Rectangle.Fill>
+    								<ImageBrush ImageSource="Book.png"/>
+    							</Rectangle.Fill>
+    						</Rectangle>
+    					</Grid>
+    					<ControlTemplate.Triggers>
+    						<Trigger Property="IsFocused" Value="True"/>
+    						<Trigger Property="IsDefaulted" Value="True"/>
+    						<Trigger Property="IsMouseOver" Value="True"/>
+    						<Trigger Property="IsPressed" Value="True"/>
+    						<Trigger Property="IsEnabled" Value="False"/>
+    					</ControlTemplate.Triggers>
+    				</ControlTemplate>
+    			</Setter.Value>
+    		</Setter>
+    	</Style>
+    	<Style x:Key="TravelMapButton" TargetType="{x:Type Button}">
+    		<Setter Property="Template">
+    			<Setter.Value>
+    				<ControlTemplate TargetType="{x:Type Button}">
+    					<Grid>
+    						<VisualStateManager.VisualStateGroups>
+    							<VisualStateGroup x:Name="CommonStates">
+    								<VisualState x:Name="Normal"/>
+    								<VisualState x:Name="MouseOver">
+    									<Storyboard>
+    										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="rectangle">
+    											<EasingDoubleKeyFrame KeyTime="0" Value="1.365"/>
+    										</DoubleAnimationUsingKeyFrames>
+    										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="rectangle">
+    											<EasingDoubleKeyFrame KeyTime="0" Value="-5.5"/>
+    										</DoubleAnimationUsingKeyFrames>
+    										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="rectangle">
+    											<EasingDoubleKeyFrame KeyTime="0" Value="1.375"/>
+    										</DoubleAnimationUsingKeyFrames>
+    										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="rectangle">
+    											<EasingDoubleKeyFrame KeyTime="0" Value="-9"/>
+    										</DoubleAnimationUsingKeyFrames>
+    									</Storyboard>
+    								</VisualState>
+    								<VisualState x:Name="Pressed"/>
+    								<VisualState x:Name="Disabled"/>
+    							</VisualStateGroup>
+    						</VisualStateManager.VisualStateGroups>
+    						<Rectangle x:Name="rectangle" StrokeThickness="3" ToolTip="Travel Map" RenderTransformOrigin="0.5,0.5">
+    							<Rectangle.RenderTransform>
+    								<TransformGroup>
+    									<ScaleTransform/>
+    									<SkewTransform/>
+    									<RotateTransform/>
+    									<TranslateTransform/>
+    								</TransformGroup>
+    							</Rectangle.RenderTransform>
+    							<Rectangle.Fill>
+    								<ImageBrush ImageSource="travel.png"/>
+    							</Rectangle.Fill>
+    						</Rectangle>
+    					</Grid>
+    					<ControlTemplate.Triggers>
+    						<Trigger Property="IsFocused" Value="True"/>
+    						<Trigger Property="IsDefaulted" Value="True"/>
+    						<Trigger Property="IsMouseOver" Value="True"/>
+    						<Trigger Property="IsPressed" Value="True"/>
+    						<Trigger Property="IsEnabled" Value="False"/>
+    					</ControlTemplate.Triggers>
+    				</ControlTemplate>
+    			</Setter.Value>
+    		</Setter>
+    	</Style>
+    	<Style x:Key="GoBackButton" TargetType="{x:Type Button}">
+    		<Setter Property="Template">
+    			<Setter.Value>
+    				<ControlTemplate TargetType="{x:Type Button}">
+    					<Grid>
+    						<VisualStateManager.VisualStateGroups>
+    							<VisualStateGroup x:Name="CommonStates">
+    								<VisualState x:Name="Normal"/>
+    								<VisualState x:Name="MouseOver">
+    									<Storyboard>
+    										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="rectangle">
+    											<EasingDoubleKeyFrame KeyTime="0" Value="1.27"/>
+    										</DoubleAnimationUsingKeyFrames>
+    										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="rectangle">
+    											<EasingDoubleKeyFrame KeyTime="0" Value="1.274"/>
+    										</DoubleAnimationUsingKeyFrames>
+    										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="rectangle">
+    											<EasingDoubleKeyFrame KeyTime="0" Value="-1"/>
+    										</DoubleAnimationUsingKeyFrames>
+    										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="rectangle">
+    											<EasingDoubleKeyFrame KeyTime="0" Value="-6"/>
+    										</DoubleAnimationUsingKeyFrames>
+    									</Storyboard>
+    								</VisualState>
+    								<VisualState x:Name="Pressed"/>
+    								<VisualState x:Name="Disabled"/>
+    							</VisualStateGroup>
+    						</VisualStateManager.VisualStateGroups>
+    						<Rectangle x:Name="rectangle" StrokeThickness="3" ToolTip="Back to Main Menu" RenderTransformOrigin="0.5,0.5">
+    							<Rectangle.RenderTransform>
+    								<TransformGroup>
+    									<ScaleTransform/>
+    									<SkewTransform/>
+    									<RotateTransform/>
+    									<TranslateTransform/>
+    								</TransformGroup>
+    							</Rectangle.RenderTransform>
+    							<Rectangle.Fill>
+    								<ImageBrush ImageSource="home.png"/>
+    							</Rectangle.Fill>
+    						</Rectangle>
+    					</Grid>
+    					<ControlTemplate.Triggers>
+    						<Trigger Property="IsFocused" Value="True"/>
+    						<Trigger Property="IsDefaulted" Value="True"/>
+    						<Trigger Property="IsMouseOver" Value="True"/>
+    						<Trigger Property="IsPressed" Value="True"/>
+    						<Trigger Property="IsEnabled" Value="False"/>
+    					</ControlTemplate.Triggers>
+    				</ControlTemplate>
+    			</Setter.Value>
+    		</Setter>
+    	</Style>
+    	<Style x:Key="SaveButton" TargetType="{x:Type Button}">
+    		<Setter Property="Template">
+    			<Setter.Value>
+    				<ControlTemplate TargetType="{x:Type Button}">
+    					<Grid>
+    						<VisualStateManager.VisualStateGroups>
+    							<VisualStateGroup x:Name="CommonStates">
+    								<VisualState x:Name="Normal"/>
+    								<VisualState x:Name="MouseOver">
+    									<Storyboard>
+    										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="rectangle">
+    											<EasingDoubleKeyFrame KeyTime="0" Value="1.271"/>
+    										</DoubleAnimationUsingKeyFrames>
+    										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="rectangle">
+    											<EasingDoubleKeyFrame KeyTime="0" Value="1.212"/>
+    										</DoubleAnimationUsingKeyFrames>
+    										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="rectangle">
+    											<EasingDoubleKeyFrame KeyTime="0" Value="-1"/>
+    										</DoubleAnimationUsingKeyFrames>
+    										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="rectangle">
+    											<EasingDoubleKeyFrame KeyTime="0" Value="-3.5"/>
+    										</DoubleAnimationUsingKeyFrames>
+    									</Storyboard>
+    								</VisualState>
+    								<VisualState x:Name="Pressed"/>
+    								<VisualState x:Name="Disabled"/>
+    							</VisualStateGroup>
+    						</VisualStateManager.VisualStateGroups>
+    						<Rectangle x:Name="rectangle" StrokeThickness="3" ToolTip="Save" RenderTransformOrigin="0.5,0.5">
+    							<Rectangle.RenderTransform>
+    								<TransformGroup>
+    									<ScaleTransform/>
+    									<SkewTransform/>
+    									<RotateTransform/>
+    									<TranslateTransform/>
+    								</TransformGroup>
+    							</Rectangle.RenderTransform>
+    							<Rectangle.Fill>
+    								<ImageBrush ImageSource="save.png"/>
+    							</Rectangle.Fill>
+    						</Rectangle>
+    					</Grid>
+    					<ControlTemplate.Triggers>
+    						<Trigger Property="IsFocused" Value="True"/>
+    						<Trigger Property="IsDefaulted" Value="True"/>
+    						<Trigger Property="IsMouseOver" Value="True"/>
+    						<Trigger Property="IsPressed" Value="True"/>
+    						<Trigger Property="IsEnabled" Value="False"/>
+    					</ControlTemplate.Triggers>
+    				</ControlTemplate>
+    			</Setter.Value>
+    		</Setter>
+    	</Style>
+    	<Style x:Key="ExitButton" TargetType="{x:Type Button}">
+    		<Setter Property="Template">
+    			<Setter.Value>
+    				<ControlTemplate TargetType="{x:Type Button}">
+    					<Grid>
+    						<VisualStateManager.VisualStateGroups>
+    							<VisualStateGroup x:Name="CommonStates">
+    								<VisualState x:Name="Normal"/>
+    								<VisualState x:Name="MouseOver">
+    									<Storyboard>
+    										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="rectangle">
+    											<EasingDoubleKeyFrame KeyTime="0" Value="1.188"/>
+    										</DoubleAnimationUsingKeyFrames>
+    										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="rectangle">
+    											<EasingDoubleKeyFrame KeyTime="0" Value="1.219"/>
+    										</DoubleAnimationUsingKeyFrames>
+    										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="rectangle">
+    											<EasingDoubleKeyFrame KeyTime="0" Value="-3"/>
+    										</DoubleAnimationUsingKeyFrames>
+    										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="rectangle">
+    											<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+    										</DoubleAnimationUsingKeyFrames>
+    									</Storyboard>
+    								</VisualState>
+    								<VisualState x:Name="Pressed"/>
+    								<VisualState x:Name="Disabled"/>
+    							</VisualStateGroup>
+    						</VisualStateManager.VisualStateGroups>
+    						<Rectangle x:Name="rectangle" StrokeThickness="3" ToolTip="Exit" RenderTransformOrigin="0.5,0.5">
+    							<Rectangle.RenderTransform>
+    								<TransformGroup>
+    									<ScaleTransform/>
+    									<SkewTransform/>
+    									<RotateTransform/>
+    									<TranslateTransform/>
+    								</TransformGroup>
+    							</Rectangle.RenderTransform>
+    							<Rectangle.Fill>
+    								<ImageBrush ImageSource="exit.png"/>
+    							</Rectangle.Fill>
+    						</Rectangle>
+    					</Grid>
+    					<ControlTemplate.Triggers>
+    						<Trigger Property="IsFocused" Value="True"/>
+    						<Trigger Property="IsDefaulted" Value="True"/>
+    						<Trigger Property="IsMouseOver" Value="True"/>
+    						<Trigger Property="IsPressed" Value="True"/>
+    						<Trigger Property="IsEnabled" Value="False"/>
+    					</ControlTemplate.Triggers>
+    				</ControlTemplate>
+    			</Setter.Value>
+    		</Setter>
+    	</Style>
+    	<Style x:Key="addButton" TargetType="{x:Type Button}">
+    		<Setter Property="Template">
+    			<Setter.Value>
+    				<ControlTemplate TargetType="{x:Type Button}">
+    					<Grid>
+    						<Ellipse Fill="#FF1FFF00"/>
+    						<ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Margin="0,-1.5,0,0"/>
+    					</Grid>
+    					<ControlTemplate.Triggers>
+    						<Trigger Property="IsFocused" Value="True"/>
+    						<Trigger Property="IsDefaulted" Value="True"/>
+    						<Trigger Property="IsMouseOver" Value="True"/>
+    						<Trigger Property="IsPressed" Value="True"/>
+    						<Trigger Property="IsEnabled" Value="False"/>
+    					</ControlTemplate.Triggers>
+    				</ControlTemplate>
+    			</Setter.Value>
+    		</Setter>
+    	</Style>
+    	<Style x:Key="subButton" TargetType="{x:Type Button}">
+    		<Setter Property="Template">
+    			<Setter.Value>
+    				<ControlTemplate TargetType="{x:Type Button}">
+    					<Grid>
+    						<Ellipse Fill="#FFF91919"/>
+    						<ContentPresenter HorizontalAlignment="Left" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Top" Margin="5.5,0,0,0"/>
+    					</Grid>
+    					<ControlTemplate.Triggers>
+    						<Trigger Property="IsFocused" Value="True"/>
+    						<Trigger Property="IsDefaulted" Value="True"/>
+    						<Trigger Property="IsMouseOver" Value="True"/>
+    						<Trigger Property="IsPressed" Value="True"/>
+    						<Trigger Property="IsEnabled" Value="False"/>
+    					</ControlTemplate.Triggers>
+    				</ControlTemplate>
+    			</Setter.Value>
+    		</Setter>
+    	</Style>
+    	<Style x:Key="RandomizeButton" TargetType="{x:Type Button}">
+    		<Setter Property="Template">
+    			<Setter.Value>
+    				<ControlTemplate TargetType="{x:Type Button}">
+    					<Grid>
+    						<VisualStateManager.VisualStateGroups>
+    							<VisualStateGroup x:Name="CommonStates">
+    								<VisualState x:Name="Normal"/>
+    								<VisualState x:Name="MouseOver">
+    									<Storyboard>
+    										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="rectangle">
+    											<EasingDoubleKeyFrame KeyTime="0" Value="0.835"/>
+    										</DoubleAnimationUsingKeyFrames>
+    										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="rectangle">
+    											<EasingDoubleKeyFrame KeyTime="0" Value="-1.5"/>
+    										</DoubleAnimationUsingKeyFrames>
+    										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="rectangle">
+    											<EasingDoubleKeyFrame KeyTime="0" Value="0.79"/>
+    										</DoubleAnimationUsingKeyFrames>
+    										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="rectangle">
+    											<EasingDoubleKeyFrame KeyTime="0" Value="0.5"/>
+    										</DoubleAnimationUsingKeyFrames>
+    									</Storyboard>
+    								</VisualState>
+    								<VisualState x:Name="Pressed"/>
+    								<VisualState x:Name="Disabled"/>
+    							</VisualStateGroup>
+    						</VisualStateManager.VisualStateGroups>
+    						<Rectangle x:Name="rectangle" Cursor="Hand" RadiusY="10" RadiusX="62" Stroke="#FF37F153" RenderTransformOrigin="0.5,0.5">
+    							<Rectangle.RenderTransform>
+    								<TransformGroup>
+    									<ScaleTransform/>
+    									<SkewTransform/>
+    									<RotateTransform/>
+    									<TranslateTransform/>
+    								</TransformGroup>
+    							</Rectangle.RenderTransform>
+    							<Rectangle.Fill>
+    								<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+    									<GradientStop Color="#FFE9CF1F" Offset="0"/>
+    									<GradientStop Color="#FFD6632D" Offset="1"/>
+    								</LinearGradientBrush>
+    							</Rectangle.Fill>
+    						</Rectangle>
+    						<ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+    					</Grid>
+    					<ControlTemplate.Triggers>
+    						<Trigger Property="IsFocused" Value="True"/>
+    						<Trigger Property="IsDefaulted" Value="True"/>
+    						<Trigger Property="IsMouseOver" Value="True"/>
+    						<Trigger Property="IsPressed" Value="True"/>
+    						<Trigger Property="IsEnabled" Value="False"/>
+    					</ControlTemplate.Triggers>
+    				</ControlTemplate>
+    			</Setter.Value>
+    		</Setter>
+    	</Style>
+    	<FontFamily x:Key="KristenITC">Kristen ITC</FontFamily>
+    	<FontFamily x:Key="SketchFlow">SketchFlow Print</FontFamily>
+    	<FontFamily x:Key="SketchFontNew">SketchFlow Print</FontFamily>
+    	<FontFamily x:Key="KristenNew">Kristen ITC</FontFamily>
+    	<Style x:Key="LoadButton" TargetType="{x:Type Button}">
+    		<Setter Property="Template">
+    			<Setter.Value>
+    				<ControlTemplate TargetType="{x:Type Button}">
+    					<Grid>
+    						<VisualStateManager.VisualStateGroups>
+    							<VisualStateGroup x:Name="CommonStates">
+    								<VisualState x:Name="Normal"/>
+    								<VisualState x:Name="MouseOver">
+    									<Storyboard>
+    										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="path">
+    											<EasingDoubleKeyFrame KeyTime="0" Value="0.894"/>
+    										</DoubleAnimationUsingKeyFrames>
+    										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="path">
+    											<EasingDoubleKeyFrame KeyTime="0" Value="-4.5"/>
+    										</DoubleAnimationUsingKeyFrames>
+    										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="path">
+    											<EasingDoubleKeyFrame KeyTime="0" Value="0.932"/>
+    										</DoubleAnimationUsingKeyFrames>
+    										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="path">
+    											<EasingDoubleKeyFrame KeyTime="0" Value="-3.5"/>
+    										</DoubleAnimationUsingKeyFrames>
+    										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="contentPresenter">
+    											<EasingDoubleKeyFrame KeyTime="0" Value="-3"/>
+    										</DoubleAnimationUsingKeyFrames>
+    										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="contentPresenter">
+    											<EasingDoubleKeyFrame KeyTime="0" Value="-2"/>
+    										</DoubleAnimationUsingKeyFrames>
+    										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="path">
+    											<EasingColorKeyFrame KeyTime="0" Value="#FF52C44E"/>
+    										</ColorAnimationUsingKeyFrames>
+    									</Storyboard>
+    								</VisualState>
+    								<VisualState x:Name="Pressed"/>
+    								<VisualState x:Name="Disabled"/>
+    							</VisualStateGroup>
+    						</VisualStateManager.VisualStateGroups>
+    						<Path x:Name="path" Data="M51.493,3 C78.274948,3.0000002 99.986,20.684752 99.986,42.5 99.986,64.315247 78.274948,82 51.493,82 24.711055,82 2.9999995,64.315247 3,42.5 2.9999995,20.684752 24.711055,3.0000002 51.493,3 z" Stretch="Fill" StrokeThickness="6" RenderTransformOrigin="0.5,0.5">
+    							<Path.RenderTransform>
+    								<TransformGroup>
+    									<ScaleTransform/>
+    									<SkewTransform/>
+    									<RotateTransform/>
+    									<TranslateTransform/>
+    								</TransformGroup>
+    							</Path.RenderTransform>
+    							<Path.Fill>
+    								<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+    									<GradientStop Color="#FF29B125" Offset="0"/>
+    									<GradientStop Color="#FF93E990" Offset="1"/>
+    								</LinearGradientBrush>
+    							</Path.Fill>
+    							<Path.Stroke>
+    								<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+    									<GradientStop Color="White" Offset="0"/>
+    									<GradientStop Color="#FF11AB14" Offset="1"/>
+    								</LinearGradientBrush>
+    							</Path.Stroke>
+    						</Path>
+    						<ContentPresenter x:Name="contentPresenter" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" RenderTransformOrigin="0.5,0.5">
+    							<ContentPresenter.RenderTransform>
+    								<TransformGroup>
+    									<ScaleTransform/>
+    									<SkewTransform/>
+    									<RotateTransform/>
+    									<TranslateTransform/>
+    								</TransformGroup>
+    							</ContentPresenter.RenderTransform>
+    						</ContentPresenter>
+    					</Grid>
+    					<ControlTemplate.Triggers>
+    						<Trigger Property="IsFocused" Value="True"/>
+    						<Trigger Property="IsDefaulted" Value="True"/>
+    						<Trigger Property="IsMouseOver" Value="True"/>
+    						<Trigger Property="IsPressed" Value="True"/>
+    						<Trigger Property="IsEnabled" Value="False"/>
+    					</ControlTemplate.Triggers>
+    				</ControlTemplate>
+    			</Setter.Value>
+    		</Setter>
+    	</Style>
+         
+    </Application.Resources>
+</Application>

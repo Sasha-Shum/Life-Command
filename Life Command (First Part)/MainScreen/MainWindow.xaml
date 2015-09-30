@@ -1,0 +1,162 @@
+﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:ee="http://schemas.microsoft.com/expression/2010/effects" xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing" x:Class="MainScreen.MainWindow"
+        Title="MainWindow" mc:Ignorable="d" Height="443" Width="625" AllowsTransparency="True" Background="Transparent" WindowStyle="None" WindowStartupLocation="CenterScreen">
+    <Grid Height="428" Width="616" MouseLeftButtonDown="Grid_MouseLeftButtonDown">
+        <Border x:Name="Body"  CornerRadius="0,0,30,30" Margin="85,46,59,27">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                    <GradientStop Color="#FFA3DBC5" Offset="0.105" />
+                    <GradientStop Color="#FF7393A7" Offset="0.622" />
+                </LinearGradientBrush>
+            </Border.Background>
+        	<StackPanel Margin="132.5,30,150.5,8">
+        		<Canvas x:Name="Continue" Height="66" Margin="0,0,10,0" Cursor="Hand">
+        			<Rectangle x:Name="bodyContinueButton" RadiusX="30" RadiusY="10" StrokeThickness="0" Height="40" Width="136" Fill="#FF933838" Canvas.Left="24"/>
+        			<Rectangle x:Name="glowContinueButton" RadiusX="30" RadiusY="10" StrokeThickness="0" Height="40" Width="136" Canvas.Left="24" Opacity="0">
+        				<Rectangle.Fill>
+        					<RadialGradientBrush RadiusY="0.53" Center="0.542,0.92" GradientOrigin="0.542,0.92" RadiusX="0.628">
+        						<GradientStop Color="#FFFDFDFD" Offset="0"/>
+        						<GradientStop Offset="1"/>
+        					</RadialGradientBrush>
+        				</Rectangle.Fill>
+        			</Rectangle>
+        			<Rectangle x:Name="glassEffectLayer" RadiusX="30" RadiusY="10" StrokeThickness="0" Height="40" Width="136" Opacity="0.8" Canvas.Left="24" MouseEnter="glassEffectLayer_MouseEnter" MouseLeave="glassEffectLayer_MouseLeave" Cursor="Hand" ToolTip="Continue Last Saved Game">
+        				<Rectangle.Fill>
+        					<LinearGradientBrush EndPoint="0.498,0" StartPoint="0.502,1">
+        						<GradientStop Color="#00000000" Offset="0"/>
+        						<GradientStop Color="White" Offset="1"/>
+        						<GradientStop Color="#9E9E9E9E" Offset="0.655"/>
+        						<GradientStop Color="#1B1B1B1B" Offset="0.603"/>
+        					</LinearGradientBrush>
+        				</Rectangle.Fill>
+        			</Rectangle>
+        			<Label x:Name="continueLabel" Content="Continue" Canvas.Left="29" Cursor="Hand" ToolTip="Continue Last Saved Game" FontFamily="{DynamicResource SketchFlow}" FontSize="26.667" Canvas.Top="2.003" Width="127" FontWeight="Bold" RenderTransformOrigin="0.5,0.5" Foreground="White" MouseEnter="continueLabel_MouseEnter" MouseLeave="continueLabel_MouseLeave" MouseLeftButtonDown="continueLabel_MouseLeftButtonDown">
+        				<Label.RenderTransform>
+        					<TransformGroup>
+        						<ScaleTransform/>
+        						<SkewTransform/>
+        						<RotateTransform Angle="-0.946"/>
+        						<TranslateTransform/>
+        					</TransformGroup>
+        				</Label.RenderTransform>
+        				<Label.Effect>
+        					<ee:SharpenEffect/>
+        				</Label.Effect>
+        			</Label>
+        		</Canvas>
+        		<Canvas x:Name="CreateNewLife" Height="66" Margin="0,0,10,0" Cursor="Hand">
+        			<Rectangle x:Name="bodyNewLifeButton" RadiusX="30" RadiusY="10" StrokeThickness="0" Height="40" Width="136" Fill="#FF933838" Canvas.Left="24"/>
+        			<Rectangle x:Name="glowNewLifeButton" RadiusX="30" RadiusY="10" StrokeThickness="0" Height="40" Width="136" Canvas.Left="24" Opacity="0">
+        				<Rectangle.Fill>
+        					<RadialGradientBrush RadiusY="0.53" Center="0.542,0.92" GradientOrigin="0.542,0.92" RadiusX="0.628">
+        						<GradientStop Color="#FFFDFDFD" Offset="0"/>
+        						<GradientStop Offset="1"/>
+        					</RadialGradientBrush>
+        				</Rectangle.Fill>
+        			</Rectangle>
+        			<Rectangle x:Name="glassEffectLayerForNewLife" RadiusX="30" RadiusY="10" StrokeThickness="0" Height="40" Width="136" Opacity="0.8" Canvas.Left="24" MouseEnter="glassEffectLayerForNewLife_MouseEnter" MouseLeave="glassEffectLayerForNewLife_MouseLeave" Cursor="Hand" ToolTip="Create New Character">
+        				<Rectangle.Fill>
+        					<LinearGradientBrush EndPoint="0.498,0" StartPoint="0.502,1">
+        						<GradientStop Color="#00000000" Offset="0"/>
+        						<GradientStop Color="White" Offset="1"/>
+        						<GradientStop Color="#9E9E9E9E" Offset="0.655"/>
+        						<GradientStop Color="#1B1B1B1B" Offset="0.603"/>
+        					</LinearGradientBrush>
+        				</Rectangle.Fill>
+        			</Rectangle>
+        			<Label x:Name="newLifeLabel" Content="New Life" Canvas.Left="29" Canvas.Top="2.003" FontFamily="{DynamicResource SketchFlow}" FontSize="26.667" Width="127" FontWeight="Bold" Foreground="White" MouseEnter="newLifeLabel_MouseEnter" MouseLeave="newLifeLabel_MouseLeave" Cursor="Hand" ToolTip="Create New Character" MouseDown="newLifeLabel_MouseDown">
+        				<Label.Effect>
+        					<ee:SharpenEffect/>
+        				</Label.Effect>
+        			</Label>
+        		</Canvas>
+        		<Canvas x:Name="LoadLife" Height="66" Margin="0,0,10,0" Cursor="Hand">
+        			<Rectangle x:Name="bodyLoadLifeButton" RadiusX="30" RadiusY="10" StrokeThickness="0" Height="40" Width="136" Fill="#FF933838" Canvas.Left="24"/>
+        			<Rectangle x:Name="glowLoadLifeButton" RadiusX="30" RadiusY="10" StrokeThickness="0" Height="40" Width="136" Canvas.Left="24" Opacity="0">
+        				<Rectangle.Fill>
+        					<RadialGradientBrush RadiusY="0.53" Center="0.542,0.92" GradientOrigin="0.542,0.92" RadiusX="0.628">
+        						<GradientStop Color="#FFFDFDFD" Offset="0"/>
+        						<GradientStop Offset="1"/>
+        					</RadialGradientBrush>
+        				</Rectangle.Fill>
+        			</Rectangle>
+        			<Rectangle x:Name="glassEffectLayerForLoadLife" RadiusX="30" RadiusY="10" StrokeThickness="0" Height="40" Width="136" Opacity="0.8" Canvas.Left="24" Cursor="Hand">
+        				<Rectangle.Fill>
+        					<LinearGradientBrush EndPoint="0.498,0" StartPoint="0.502,1">
+        						<GradientStop Color="#00000000" Offset="0"/>
+        						<GradientStop Color="White" Offset="1"/>
+        						<GradientStop Color="#9E9E9E9E" Offset="0.655"/>
+        						<GradientStop Color="#1B1B1B1B" Offset="0.603"/>
+        					</LinearGradientBrush>
+        				</Rectangle.Fill>
+        			</Rectangle>
+        			<Label x:Name="loadLifeLable" Content="Load Life" Canvas.Left="32" Canvas.Top="0" FontSize="26.667" FontFamily="{DynamicResource SketchFlow}" FontWeight="Bold" Foreground="White" MouseEnter="loadLifeLable_MouseEnter" MouseLeave="loadLifeLable_MouseLeave" Cursor="Hand" ToolTip="Load Saved Character" MouseLeftButtonDown="loadLifeLable_MouseLeftButtonDown">
+        				<Label.Effect>
+        					<ee:SharpenEffect/>
+        				</Label.Effect>
+        			</Label>
+        		</Canvas>
+        		<Canvas x:Name="Exit" Height="66" Margin="0,0,10,0" Cursor="Hand">
+        			<Rectangle x:Name="bodyExitButton" RadiusX="30" RadiusY="10" StrokeThickness="0" Height="40" Width="136" Fill="#FF933838" Canvas.Left="24"/>
+        			<Rectangle x:Name="glowExitButton" RadiusX="30" RadiusY="10" StrokeThickness="0" Height="40" Width="136" Canvas.Left="24" Opacity="0">
+        				<Rectangle.Fill>
+        					<RadialGradientBrush RadiusY="0.53" Center="0.542,0.92" GradientOrigin="0.542,0.92" RadiusX="0.628">
+        						<GradientStop Color="#FFFDFDFD" Offset="0"/>
+        						<GradientStop Offset="1"/>
+        					</RadialGradientBrush>
+        				</Rectangle.Fill>
+        			</Rectangle>
+        			<Rectangle x:Name="glassEffectLayerForExit" RadiusX="30" RadiusY="10" StrokeThickness="0" Height="40" Width="136" Opacity="0.8" Canvas.Left="24" MouseEnter="glassEffectLayerForExit_MouseEnter" MouseLeave="glassEffectLayerForExit_MouseLeave" Cursor="Hand" ToolTip="Exit Application" MouseDown="glassEffectLayerForExit_MouseDown">
+        				<Rectangle.Fill>
+        					<LinearGradientBrush EndPoint="0.498,0" StartPoint="0.502,1">
+        						<GradientStop Color="#00000000" Offset="0"/>
+        						<GradientStop Color="White" Offset="1"/>
+        						<GradientStop Color="#9E9E9E9E" Offset="0.655"/>
+        						<GradientStop Color="#1B1B1B1B" Offset="0.603"/>
+        					</LinearGradientBrush>
+        				</Rectangle.Fill>
+        			</Rectangle>
+        			<Label x:Name="exitLable" Content="Exit" Canvas.Left="63" Canvas.Top="2.003" FontSize="26.667" FontFamily="{DynamicResource SketchFlow}" FontWeight="Bold" Foreground="White" MouseEnter="exitLable_MouseEnter" MouseLeave="exitLable_MouseLeave" Cursor="Hand" ToolTip="Exit Application" MouseDown="exitLable_MouseDown">
+        				<Label.Effect>
+        					<ee:SharpenEffect/>
+        				</Label.Effect>
+        			</Label>
+        		</Canvas>
+            </StackPanel>
+        </Border>
+        <Border CornerRadius="30,30,0,0" Margin="85,12,114,378">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                    <GradientStop Color="#FFA3DBC5" Offset="0.105" />
+                    <GradientStop Color="#FF7393A7" Offset="0.721" />
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid x:Name="TopForm" Margin="124,-11,105,0" Background="{x:Null}" Height="47">
+                <Border CornerRadius="30,30,30,30" BorderBrush="White" Margin="4,-16,-4,-2">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="Black" Offset="0" />
+                            <GradientStop Color="#FF7CAEFF" Offset="1" />
+                            <GradientStop Color="#FE697284" Offset="0" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                	<Label Content="Main Menu" FontStyle="Oblique" TextOptions.TextFormattingMode="Display" FontFamily="{DynamicResource SketchFlow}" ScrollViewer.VerticalScrollBarVisibility="Disabled" Margin="0,8,0,-8" FontSize="32" FontWeight="Bold">
+                		<Label.Effect>
+                			<ee:SharpenEffect/>
+                		</Label.Effect>
+                	</Label>
+                </Border>
+            </Grid>
+
+        </Border>
+        <Button x:Name="exitButton" Content="X" HorizontalAlignment="Right" Height="23.5" Margin="0,12,59,0" Style="{DynamicResource exitButtonStyle}" VerticalAlignment="Top" Width="25" Click="exitButton_Click" ToolTip="Exit" Cursor="Hand" >
+        	<Button.Effect>
+        		<DropShadowEffect Color="#FFB28282" ShadowDepth="4"/>
+        	</Button.Effect>
+        </Button>
+        <Button x:Name="minimizeButton" Content="_" HorizontalAlignment="Right" Height="23.5" Margin="0,12,89,0" Style="{DynamicResource minimizeButtonStyle}" VerticalAlignment="Top" Width="25" Click="minimizeButton_Click" ToolTip="Minimize" Cursor="Hand" >
+        	<Button.Effect>
+        		<DropShadowEffect Color="#FF8CB47A" ShadowDepth="4"/>
+        	</Button.Effect>
+        </Button>
+    </Grid>
+</Window>
